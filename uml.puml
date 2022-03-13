@@ -1,0 +1,39 @@
+@startuml
+class com.example.bicyclecatalog.MainActivity {
+~ DbHelper db
+~ ListView lv
+~ Button btnAdd
+~ EditText edFind
+~ String id
+~ int positionSel
+~ Cursor cr
+~ SimpleCursorAdapter sCr
+# void onCreate(Bundle)
+- void loadData(String)
++ void onCreateContextMenu(ContextMenu,View,ContextMenu.ContextMenuInfo)
++ boolean onContextItemSelected(MenuItem)
++ void onResume()
++ void onClickBtn(View)
+}
+class com.example.bicyclecatalog.DbHelper {
+- {static} String DB_NAME
+~ Context context
++ void onCreate(SQLiteDatabase)
++ void onUpgrade(SQLiteDatabase,int,int)
++ Cursor query(String)
++ boolean sqlExec(String)
+}
+class com.example.bicyclecatalog.AddEditBicycle {
+~ DbHelper db
+~ EditText edName
+~ Button btnSave
+~ String rowId
+# void onCreate(Bundle)
++ void onClickBtn(View)
+}
+
+
+androidx.appcompat.app.AppCompatActivity <|-- com.example.gasstationcatalog.MainActivity
+android.database.sqlite.SQLiteOpenHelper <|-- com.example.gasstationcatalog.DbHelper
+androidx.appcompat.app.AppCompatActivity <|-- com.example.gasstationcatalog.AddEditBicycle
+@enduml
